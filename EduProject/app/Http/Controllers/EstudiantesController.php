@@ -55,9 +55,10 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function show(Estudiante $estudiantes)
+    public function show(Estudiantes $estudiantes)
     {
-        //
+        $estudiantes = Estudiantes::all();
+        return $estudiantes;
     }
 
     /**
@@ -66,7 +67,7 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estudiante $estudiantes)
+    public function edit(Estudiantes $estudiantes)
     {
         //
     }

@@ -32,6 +32,7 @@ Route::get('/register-user', [UserController::class, "index"])->name("registerUs
 Route::post('/create-user', [UserController::class, "create"])->name('registerUser.create');
 // Estudent Pages
 Route::post('/create-estudent', [EstudiantesController::class, "create"])->name('registerEstudent.create');
+Route::get('/show-estudents', [EstudiantesController::class, "show"])->name('registerEstudent.show');
 // Admin Pages
 Route::get('/adminweb',
     function () {

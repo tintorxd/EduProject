@@ -50,6 +50,9 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    
+    <link href="https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"/>
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
     <!-- Icons. Uncomment required icon fonts -->
     @vite(['resources/fonts/boxicons.css'])
@@ -64,7 +67,10 @@
  
  
 
-    <!-- Page CSS -->
+    <!-- Page CSS -->  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <!-- Helpers -->
     @vite(['resources/js/helpers.js'])
@@ -107,41 +113,7 @@
               </a>
             </li>
 
-            <!-- Layouts -->
-            <li class="menu-item">
-              <a href="#collapseExample" class="menu-link menu-toggle" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" >
-                <i class="menu-icon tf-icons bx bx-uyjtlayout"></i>
-                <div data-i18n="Layouts">Layouts</div>
-              </a>
-
-              <ul class="menu-sub collapse" id="collapseExample">
-                <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div data-i18n="Without menu">Without menu</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="{{ route('content.dashboard', ['content'=> "estuRegister"]) }}" class="menu-link">
-                    <div data-i18n="Without navbar">Without navbar</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
-                    <div data-i18n="Container">Container</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
-                    <div data-i18n="Fluid">Fluid</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                    <div data-i18n="Blank">Blank</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
+           
 
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Estudiantes</span>
@@ -158,8 +130,8 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="pages-account-settings-notifications.html" class="menu-link">
-                    <div data-i18n="Notifications">Notifications</div>
+                  <a href="{{ route('content.dashboard', ['content'=> "estudianteTable"]) }}" class="menu-link">
+                    <div data-i18n="Notifications">Visualizar estudiantes</div>
                   </a>
                 </li>
                 <li class="menu-item">
@@ -559,6 +531,8 @@
     @vite(['resources/libs/perfect-scrollbar/perfect-scrollbar.js', 'resources/js/menu.js'])
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
     crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     {{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> --}}
     {{-- <script src="../assets/vendor/libs/popper/popper.js"></script> --}}
