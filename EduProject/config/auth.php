@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'webadmin' => [
+            'driver' => 'session',
+            'provider' => 'administradores',
+        ]
     ],
 
     /*
@@ -63,6 +67,22 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'estudiantes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Estudiantes::class,
+        ],
+        'docentes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Docente::class,
+        ],
+        'administradores' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Administradores::class,
         ],
 
         // 'users' => [
@@ -89,6 +109,24 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'estudiantes' => [
+            'provider' => 'estudiantes',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'docentes' => [
+            'provider' => 'docentes',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'administradores' => [
+            'provider' => 'administradores',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
