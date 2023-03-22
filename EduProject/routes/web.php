@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocentesController;
 use App\Http\Controllers\EstudiantesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -32,7 +33,16 @@ Route::get('/register-user', [UserController::class, "index"])->name("registerUs
 Route::post('/create-user', [UserController::class, "create"])->name('registerUser.create');
 // Estudent Pages
 Route::post('/create-estudent', [EstudiantesController::class, "create"])->name('registerEstudent.create');
-Route::get('/show-estudents', [EstudiantesController::class, "show"])->name('registerEstudent.show');
+Route::get('/show-estudents/{content}', [EstudiantesController::class, "show"])->name('registerEstudent.show');
+Route::post('/delete-estudent/{id}', [EstudiantesController::class, "delete"])->name('registerEstudent.delete');
+Route::post('/edit-estudent/{id}', [EstudiantesController::class, "edit"])->name('registerEstudent.edit');
+Route::post('/update-estudent/{id}', [EstudiantesController::class, "update"])->name('registerEstudent.update');
+// Docent Pages
+Route::post('/create-docente', [DocentesController::class, "create"])->name('registerDocente.create');
+Route::get('/show-estudents/{content}', [DocentesController::class, "show"])->name('registerEstudent.show');
+Route::post('/delete-estudent/{id}', [DocentesController::class, "delete"])->name('registerEstudent.delete');
+Route::post('/edit-estudent/{id}', [DocentesController::class, "edit"])->name('registerEstudent.edit');
+Route::post('/update-estudent/{id}', [DocentesController::class, "update"])->name('registerEstudent.update');
 // Admin Pages
 Route::get('/adminweb',
     function () {
@@ -40,6 +50,7 @@ Route::get('/adminweb',
     }
     )->name("Admin.page");
 Route::get('/contentAdmin/{content}', [MainController::class, "contentController"])->name("content.dashboard");
+Route::get('/contentAdmin', [MainController::class, "contentControllerRedirect"])->name("content.dashboard.extra");
 Route::post('/login-forms', [LoginController::class, "authenticationAdmin"])->name("loginAdmin.auth");
 Route::get('/logoutAdmin', [LoginController::class, "destroyAdmin"])->name("sessionAdmin.destroy");
 

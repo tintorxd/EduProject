@@ -10,28 +10,9 @@
 <div class="container-xxl flex-grow-1 container-p-y">
   <div class="row">
     <div class="col-md-6">
-      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Estudiante/</span> Registrar Nuevo</h4>
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Estudiante/</span> Editar Información</h4>
     </div>
-    <div class="offset-md-3 col-md-3">
-      @isset($error)
-      <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
-          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#check-circle-fill"/></svg>
-        <div>
-            No se pudo registrar al estudiante
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-      </div>
-      @endisset
-      @isset($success)
-      <div class="alert alert-success alert-dismissible d-flex align-items-center" role="alert">
-          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-        <div>
-            Estudiante Registrado Correctamente
-        </div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
-      </div>
-      @endisset
-  </div>
+    
 </div>
              
 
@@ -41,11 +22,11 @@
                 <div class="col-md" style="padding-left: 150px; padding-right: 150px">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Nuevo usuario</h5>
+                      <h5 class="mb-0">{{$estudiante->names.' '.$estudiante->lastnames}}</h5>
                       <small class="text-muted float-end">Estudiante</small>
                     </div>
                     <div class="card-body">
-                      <form action="{{ route('registerEstudent¿¿.create') }}" method="post">
+                      <form action="{{ route('registerEstudent.update', ['id'=>$estudiante->id]) }}" method="post">
                         @csrf
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-fullname">Nombres</label>
@@ -60,6 +41,7 @@
                               placeholder="John Ejemplo"
                               aria-label="John Ejemplo"
                               aria-describedby="basic-icon-default-fullname2"
+                              value="{{$estudiante->names}}"
                             />
                           </div>
                         </div>
@@ -76,6 +58,7 @@
                               placeholder="Quiroga Doe"
                               aria-label="Quiroga Doe"
                               aria-describedby="basic-icon-default-fullname2"
+                              value="{{$estudiante->lastnames}}"
                             />
                           </div>
                         </div>
@@ -92,6 +75,7 @@
                               placeholder="Av. America #xxxx"
                               aria-label="John Doe"
                               aria-describedby="basic-icon-default-fullname2"
+                              value="{{$estudiante->address}}"
                             />
                           </div>
                         </div>
@@ -107,27 +91,13 @@
                               placeholder="john@ejemplo.com"
                               aria-label="john.doe"
                               aria-describedby="basic-icon-default-email2"
+                              value="{{$estudiante->email}}"
                             />
                             <span id="basic-icon-default-email2" class="input-group-text">@ejemplo.com</span>
                           </div>
                           <div class="form-text">You can use letters, numbers & periods</div>
                         </div>
-                        <div class="mb-3">
-                          <label class="form-label" for="basic-icon-default-email">Contraseña</label>
-                          <div class="input-group input-group-merge">
-                            <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                            <input
-                              type="password"
-                              name="password"
-                              class="form-control"
-                              placeholder="S#98MMNJA"
-                              aria-label="john.doe"
-                              aria-describedby="basic-icon-default-email2"
-                            />
-                            
-                          </div>
-                          <div class="form-text">You can use letters, numbers & periods</div>
-                        </div>
+                        
                         <div class="mb-3">
                           <label class="form-label" for="basic-icon-default-phone">N° de telefono</label>
                           <div class="input-group input-group-merge">
@@ -141,6 +111,7 @@
                               placeholder="658 799 8941"
                               aria-label="658 799 8941"
                               aria-describedby="basic-icon-default-phone2"
+                              value="{{$estudiante->phone_number}}"
                             />
                           </div>
                         </div>
@@ -157,12 +128,13 @@
                               placeholder="658 799 8941"
                               aria-label="658 799 8941"
                               aria-describedby="basic-icon-default-phone2"
+                              value="{{$estudiante->birthdate}}"
                             />
                           </div>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Registrar</button>
-                        
+                        <button type="submit" class="btn btn-primary">Actualizar información</button>
+                        <a class="btn btn-danger" href="{{ route('registerEstudent.show', ['content'=> "estudianteTable"]) }}" role="button">Cancelar</a>
                       </form>
                     </div>
                   </div>

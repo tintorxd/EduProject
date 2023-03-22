@@ -55,10 +55,14 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function show(Estudiantes $estudiantes)
+    public function show($content)
     {
+       
         $estudiantes = Estudiantes::all();
-        return $estudiantes;
+        
+        return view('AdminMain', ['sub_page' => $content, 'estudiantes' => $estudiantes]);
+
+        
     }
 
     /**
@@ -67,9 +71,10 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estudiantes $estudiantes)
+    public function edit($id)
     {
-        //
+        $estudiante = Estudiantes::find($id);
+        return view('AdminMain', ['sub_page' => "estuEdit", 'estudiante' => $estudiante]);
     }
 
     /**
@@ -79,9 +84,19 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estudiantes $estudiantes)
+    public function update($id)
     {
-        //
+        try {
+            //code...
+            $updateEstu = Estudiantes::find($id);
+            $updateEstu->update(request(['names', 'lastnames', 'email', 'phone_number', 'birthdate', 'address']));
+            $estudiantes = Estudiantes::all();
+            return view('AdminMain', ['sub_page' => "estudianteTable", 'estudiantes' => $estudiantes, 'success' => "Estudiante modificado correctamente"]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            $estudiantes = Estudiantes::all();
+            return view('AdminMain', ['sub_page' => "estudianteTable", 'estudiantes' => $estudiantes, 'error' => "Error al modificar"]);
+        }  
     }
 
     /**
@@ -90,8 +105,20 @@ class EstudiantesController extends Controller
      * @param  \App\Models\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiantes $estudiantes)
-    {
-        //
+    public function delete($id)
+    { 
+        // echo $id;
+        try {
+            //code...
+            $deleteEstu = Estudiantes::find($id);
+            $deleteEstu->delete();
+            $estudiantes = Estudiantes::all();
+            return back()->with(['sub_page' => "estudianteTable", 'estudiantes' => $estudiantes, 'action' => "success", "mensage"=> "Estudiante eliminado con exito"]);
+             // return view('AdminMain', ['sub_page' => "estudianteTable", 'estudiantes' => $estudiantes,'success' => "Estudiante eliminado correctamente"]);
+        } catch (\Throwable $th) {
+            $estudiantes = Estudiantes::all();
+            return back()->with(['sub_page' => "estudianteTable", 'estudiantes' => $estudiantes, 'action' => "error", "mensage" => "Estudiante eliminado con exito"]);
+            // return view('AdminMain', ['sub_page' => "estudianteTable", 'estudiantes' => $estudiantes ,'error' => "Error al Eliminar"]);
+        }
     }
 }

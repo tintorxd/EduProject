@@ -14,7 +14,7 @@ class DocentesController extends Controller
      */
     public function index()
     {
-        //
+    
     }
 
     /**
@@ -22,9 +22,31 @@ class DocentesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        try {
+            //code...
+            $file =  $request->file('CV');
+            $filename = $request->input('ci') .'.'. $file->extension();
+            $file->storeAs('',$filename);
+            $names = $request->input("names");
+            $lastnames = $request->input("lastnames");
+            $ci = $request->input("ci");
+            $email = $request->input("email");
+            $password = $request->input("password");
+            $phone_number = $request->input("phone_number");
+            $birthdate = $request->input("birthdate");
+            $address = $request->input("address");
+            $degree_lv = $request->input("degree_lv");
+       
+            // request(['names', 'lastnames', 'ci', 'email', 'password', 'phone_number', 'birthdate', 'address', 'CV' => $filename, 'degree_lv'])
+            Docentes::create(['CV' => $filename, 'names' => $names, 'lastnames' => $lastnames, 'ci' => $ci, 'email' => $email, 'password' => $password, 'phone_number' => $phone_number, 'birthdate' => $birthdate, 'address' => $address, 'degree_lv' => $degree_lv]);
+            return view('AdminMain', ['sub_page' => "docenteRegister", 'success' => true]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            echo $th;
+            // return view('AdminMain', ['sub_page' => "docenteRegister", 'error' => $th]);
+        } 
     }
 
     /**
