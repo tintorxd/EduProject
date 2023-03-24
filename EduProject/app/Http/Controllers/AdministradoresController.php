@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administradores;
+use App\Models\Docentes;
 use Illuminate\Http\Request;
 
 class AdministradoresController extends Controller
@@ -24,7 +25,17 @@ class AdministradoresController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            //code...
+
+            Administradores::create(request(['names', 'lastnames', 'email', 'password', 'phone_number']));
+            return back()->with(['sub_page' => "adminUser/userRegister", 'action' => 'success']);
+            // return view('AdminMain', ['sub_page' => "estudiante/estuRegister", 'success' => true]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            // echo $th;
+            return back()->with(['sub_page' => "adminUser/userRegister", 'action' => "error"]);
+        }
     }
 
     /**
@@ -44,9 +55,10 @@ class AdministradoresController extends Controller
      * @param  \App\Models\Administradores  $administradores
      * @return \Illuminate\Http\Response
      */
-    public function show(Administradores $administradores)
+    public function show(Administradores $administradores, $content)
     {
-        //
+        $administradores = Administradores::all();
+        return back()->with(['sub_page' => 'adminuser/' . $content, 'administradores' => $administradores]);
     }
 
     /**
@@ -55,9 +67,10 @@ class AdministradoresController extends Controller
      * @param  \App\Models\Administradores  $administradores
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administradores $administradores)
+    public function edit(Administradores $administradores, $id)
     {
-        //
+        $administrador = Administradores::find($id);
+        return back()->with(['sub_page' => "adminuser/userEdit", 'administrador' => $administrador]);
     }
 
     /**
@@ -67,9 +80,19 @@ class AdministradoresController extends Controller
      * @param  \App\Models\Administradores  $administradores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administradores $administradores)
+    public function update(Request $request, Administradores $administradores, $id)
     {
-        //
+        try {
+            //code...
+            $updateAdmin = Administradores::find($id);
+            $updateAdmin->update(request(['names', 'lastnames', 'email', 'password', 'phone_number']));
+            $administradores = Administradores::all();
+            return back()->with(['sub_page' => "adminuser/userTable", 'administradores' => $administradores, 'action' => 'success', 'mensage' => "Administrador modificado correctamente"]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            $administradores = Administradores::all();
+            return back()->with(['sub_page' => "adminuser/userTable", 'administradores' => $administradores, 'action' => 'error', 'mensage' => "Error al modificar"]);
+        }
     }
 
     /**
@@ -78,8 +101,19 @@ class AdministradoresController extends Controller
      * @param  \App\Models\Administradores  $administradores
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administradores $administradores)
+    public function delete(Administradores $administradores, $id)
     {
-        //
+        try {
+            //code...
+            $deleteAdmin = Administradores::find($id);
+            $deleteAdmin->delete();
+            $administradores = Administradores::all();
+            return back()->with(['sub_page' => "adminuser/userTable", 'administradores' => $administradores, 'action' => "success", "mensage" => "Administrador eliminado con exito"]);
+            // return view('AdminMain', ['sub_page' => "estudianteTable", 'Administradores' => $Administradores,'success' => "Estudiante eliminado correctamente"]);
+        } catch (\Throwable $th) {
+            $administradores = Administradores::all();
+            return back()->with(['sub_page' => "adminuser/userTable", 'administradores' => $administradores, 'action' => "error", "mensage" => "Administrador eliminado con exito"]);
+            // return view('AdminMain', ['sub_page' => "estudianteTable", 'Administradores' => $Administradores ,'error' => "Error al Eliminar"]);
+        }
     }
 }

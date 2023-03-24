@@ -1,8 +1,12 @@
 
 
-@if (isset($sub_page) == false)
+@if (session("sub_page") == false)
 @php
     $sub_page = "dashboard";
+@endphp
+@else
+@php
+    $sub_page = session('sub_page');
 @endphp
 @endif
 
@@ -50,28 +54,28 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-    
     <link href="https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"/>
     <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
     <!-- Icons. Uncomment required icon fonts -->
     @vite(['resources/fonts/boxicons.css'])
     
-
+    
     <!-- Core CSS -->
     @vite(['resources/css/core.css','resources/css/theme-default.css','resources/css/demo.css',])
- 
-
+    
+    
     <!-- Vendors CSS -->
-     @vite(['resources/libs/perfect-scrollbar/perfect-scrollbar.css','resources/libs/apex-charts/apex-charts.css'])
- 
- 
-
+    @vite(['resources/libs/perfect-scrollbar/perfect-scrollbar.css','resources/libs/apex-charts/apex-charts.css'])
+    
+    
+    
     <!-- Page CSS -->  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
     crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Helpers -->
     @vite(['resources/js/helpers.js'])
     
@@ -119,13 +123,13 @@
               <span class="menu-header-text">Estudiantes</span>
             </li>
             <li class="menu-item">
-              <a href="#collapseEstudiantes" class="menu-link menu-toggle" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseEstudiantes">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">Configuracion de cuentas</div>
               </a>
-              <ul class="menu-sub collapse" id="collapseEstudiantes">
+              <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{ route('content.dashboard', ['content'=> "estuRegister"]) }}" class="menu-link">
+                  <a href="{{ route('content.dashboard', ['folder'=>"estudiante" ,'content'=> "estuRegister"]) }}" class="menu-link">
                     <div data-i18n="Account">Registrar nuevo estudiante</div>
                   </a>
                 </li>
@@ -141,12 +145,13 @@
                 </li>
               </ul>
             </li>
+    
             <li class="menu-item">
-              <a href="#collapseEstado " class="menu-link menu-toggle" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseEstado">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div data-i18n="Authentications">Estado</div>
               </a>
-              <ul class="menu-sub collapse" id="collapseEstado">
+              <ul class="menu-sub">
                 <li class="menu-item">
                   <a href="auth-login-basic.html" class="menu-link" target="_blank">
                     <div data-i18n="Basic">Login</div>
@@ -170,18 +175,18 @@
             
             <!-- User interface -->
             <li class="menu-item">
-              <a href="#collapseDocente " class="menu-link menu-toggle" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseDocente">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">Configuracion Docente</div>
               </a>
-              <ul class="menu-sub collapse" id="collapseDocente">
+              <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{ route('content.dashboard', ['content'=> "docenteRegister"]) }}" class="menu-link">
+                  <a href="{{ route('content.dashboard', ['folder'=>"docente",'content'=> "docenteRegister"]) }}" class="menu-link">
                     <div data-i18n="Account">Registrar nuevo docente</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{ route('registerEstudent.show', ['content'=> "docenteTable"]) }}" class="menu-link">
+                  <a href="{{ route('registerDocente.show', ['content'=> "docenteTable"]) }}" class="menu-link">
                     <div data-i18n="Notifications">Visualizar docentes</div>
                   </a>
                 </li>
@@ -189,30 +194,25 @@
             </li>
 
 
-            <li class="menu-item">
-              <a href="icons-boxicons.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div data-i18n="Boxicons">Boxicons</div>
-              </a>
-            </li>
+            
 
             <!-- Forms & Tables -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Usuarios</span></li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Usuarios Administrador</span></li>
             <!-- Forms -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Form Elements</div>
+                <div data-i18n="Form Elements">Configuracion de Administradores</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="forms-basic-inputs.html" class="menu-link">
-                    <div data-i18n="Basic Inputs">Basic Inputs</div>
+                  <a href="{{ route('content.dashboard', ['folder'=>"adminuser",'content'=> "userRegister"]) }}" class="menu-link">
+                    <div data-i18n="Registrar administrador">Registrar administrador</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="forms-input-groups.html" class="menu-link">
-                    <div data-i18n="Input groups">Input groups</div>
+                  <a href="{{ route('registerAdmin.show', ['content'=> "userTable"]) }}" class="menu-link">
+                    <div data-i18n="Input groups">Visualizar administradores</div>
                   </a>
                 </li>
               </ul>
@@ -242,8 +242,67 @@
                 <div data-i18n="Tables">Tables</div>
               </a>
             </li>
+           
+            <!-- Forms & Tables -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Cursos</span></li>
+            <!-- Forms -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Elements">Seminarios</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="forms-basic-inputs.html" class="menu-link">
+                    <div data-i18n="Basic Inputs">Registrar seminario</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-input-groups.html" class="menu-link">
+                    <div data-i18n="Input groups">Input groups</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Talleres</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-layouts-vertical.html" class="menu-link">
+                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-horizontal.html" class="menu-link">
+                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">Capacitaciones</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-layouts-vertical.html" class="menu-link">
+                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-horizontal.html" class="menu-link">
+                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+           
             <!-- Misc -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Ayuda</span></li>
             <li class="menu-item">
               <a
                 href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
@@ -251,7 +310,7 @@
                 class="menu-link"
               >
                 <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
+                <div data-i18n="Support">Sporte</div>
               </a>
             </li>
             <li class="menu-item">
@@ -261,7 +320,7 @@
                 class="menu-link"
               >
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
+                <div data-i18n="Documentation">Documentacion</div>
               </a>
             </li>
           </ul>
@@ -396,25 +455,25 @@
                   <script>
                     document.write(new Date().getFullYear());
                   </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                  , made by
+                  <a href="#" target="_blank" class="footer-link fw-bolder">Fundetic Bolivia</a>
                 </div>
                 <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+                  <a href="#" class="footer-link me-4" target="_blank">Licencias</a>
+                  <a href="#" target="_blank" class="footer-link me-4">Contactos</a>
 
                   <a
-                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                    href="#"
                     target="_blank"
                     class="footer-link me-4"
-                    >Documentation</a
+                    >Documentacion</a
                   >
 
                   <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                    href="#"
                     target="_blank"
                     class="footer-link me-4"
-                    >Support</a
+                    >Soporte</a
                   >
                 </div>
               </div>
@@ -432,14 +491,7 @@
     </div>
     <!-- / Layout wrapper -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
+  
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

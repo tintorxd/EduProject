@@ -47,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($estudiantes as $estudiante)
+                @foreach (session("estudiantes") as $estudiante)
                 <tr>
                     <td>{{$estudiante->names." ".$estudiante->lastnames}}</td>
                     <td>{{$estudiante->email}}</td>

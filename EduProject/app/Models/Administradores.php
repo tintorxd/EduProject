@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Administradores extends Authenticatable
 {
-     use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +24,7 @@ class Administradores extends Authenticatable
         'password',
         'phone_number',
         'state'
-        
+
 
     ];
 
@@ -50,5 +50,4 @@ class Administradores extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
-    protected $guarded = [];
 }

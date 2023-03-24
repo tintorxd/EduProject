@@ -36,7 +36,7 @@
              
 
               <!-- Basic Layout -->
-              <div class="row" s>
+              <div class="row">
                 
                 <div class="col-md" style="padding-left: 150px; padding-right: 150px">
                   <div class="card mb-4">
@@ -225,4 +225,4 @@
                   </div>
                 </div>
               </div>
-            </div>
+            

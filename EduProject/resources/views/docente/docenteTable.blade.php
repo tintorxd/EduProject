@@ -8,10 +8,11 @@
     <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
   </symbol>
 </svg>
+
 <div class="container" style="padding: 40px">
     <div class="row">
     <div class="col-md-6">
-      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Estudiante/</span> Tabla Estudiantes</h4>
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">docente/</span> Tabla docentes</h4>
     </div>
     <div class="offset-md-3 col-md-3">
       @if(session("action")=="error")
@@ -47,25 +48,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($estudiantes as $estudiante)
+                @foreach (session('docentes') as $docente)
                 <tr>
-                    <td>{{$estudiante->names." ".$estudiante->lastnames}}</td>
-                    <td>{{$estudiante->email}}</td>
-                    <td>{{$estudiante->phone_number}}</td>
-                    <td>{{$estudiante->address}}</td>
-                    <td>{{$estudiante->birthdate}}</td>
-                    <td>{{$estudiante->created_at}}</td>
+                    <td>{{$docente->names." ".$docente->lastnames}}</td>
+                    <td>{{$docente->email}}</td>
+                    <td>{{$docente->phone_number}}</td>
+                    <td>{{$docente->address}}</td>
+                    <td>{{$docente->birthdate}}</td>
+                    <td>{{$docente->created_at}}</td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <form action="{{ route('registerEstudent.edit', ['id'=>$estudiante->id]) }}" method="post">
+                                <form action="{{ route('registerDocente.edit', ['id'=>$docente->id]) }}" method="post">
                                     @csrf
                                     <button class="dropdown-item" type="submit"><i class="bx bx-edit-alt me-1"></i> Edit</button>
                                 </form>
-                                <form action="{{ route('registerEstudent.delete', ['id'=> $estudiante->id]) }}" method="post">
+                                <form action="{{ route('registerDocente.delete', ['id'=> $docente->id]) }}" method="post">
                                     @csrf
                                     <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i>Delete</button>
                                 </form>
