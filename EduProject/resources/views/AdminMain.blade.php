@@ -1,13 +1,11 @@
-
-
-@if (session("sub_page") == false)
-@php
-    $sub_page = "dashboard";
-@endphp
+@if (session('sub_page') == false)
+    @php
+        $sub_page = 'dashboard';
+    @endphp
 @else
-@php
-    $sub_page = session('sub_page');
-@endphp
+    @php
+        $sub_page = session('sub_page');
+    @endphp
 @endif
 
 
@@ -40,13 +38,13 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Admin Web - Fundetic </title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,16 +60,16 @@
     
     
     <!-- Core CSS -->
-    @vite(['resources/css/core.css','resources/css/theme-default.css','resources/css/demo.css',])
+    @vite(['resources/css/core.css', 'resources/css/theme-default.css', 'resources/css/demo.css'])
     
     
     <!-- Vendors CSS -->
-    @vite(['resources/libs/perfect-scrollbar/perfect-scrollbar.css','resources/libs/apex-charts/apex-charts.css'])
+    @vite(['resources/libs/perfect-scrollbar/perfect-scrollbar.css', 'resources/libs/apex-charts/apex-charts.css'])
     
     
     
     <!-- Page CSS -->  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     
@@ -113,7 +111,7 @@
             <li class="menu-item active">
               <a href="{{ route('Admin.page') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Inicio</div>
               </a>
             </li>
 
@@ -129,12 +127,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{ route('content.dashboard', ['folder'=>"estudiante" ,'content'=> "estuRegister"]) }}" class="menu-link">
+                  <a href="{{ route('content.dashboard', ['folder' => 'estudiante', 'content' => 'estuRegister']) }}" class="menu-link">
                     <div data-i18n="Account">Registrar nuevo estudiante</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{ route('registerEstudent.show', ['content'=> "estudianteTable"]) }}" class="menu-link">
+                  <a href="{{ route('registerEstudent.show', ['content' => 'estudianteTable']) }}" class="menu-link">
                     <div data-i18n="Notifications">Visualizar estudiantes</div>
                   </a>
                 </li>
@@ -181,12 +179,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{ route('content.dashboard', ['folder'=>"docente",'content'=> "docenteRegister"]) }}" class="menu-link">
+                  <a href="{{ route('content.dashboard', ['folder' => 'docente', 'content' => 'docenteRegister']) }}" class="menu-link">
                     <div data-i18n="Account">Registrar nuevo docente</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{ route('registerDocente.show', ['content'=> "docenteTable"]) }}" class="menu-link">
+                  <a href="{{ route('registerDocente.show', ['content' => 'docenteTable']) }}" class="menu-link">
                     <div data-i18n="Notifications">Visualizar docentes</div>
                   </a>
                 </li>
@@ -206,12 +204,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="{{ route('content.dashboard', ['folder'=>"adminuser",'content'=> "userRegister"]) }}" class="menu-link">
+                  <a href="{{ route('content.dashboard', ['folder' => 'adminuser', 'content' => 'userRegister']) }}" class="menu-link">
                     <div data-i18n="Registrar administrador">Registrar administrador</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="{{ route('registerAdmin.show', ['content'=> "userTable"]) }}" class="menu-link">
+                  <a href="{{ route('registerAdmin.show', ['content' => 'userTable']) }}" class="menu-link">
                     <div data-i18n="Input groups">Visualizar administradores</div>
                   </a>
                 </li>
@@ -253,13 +251,13 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="forms-basic-inputs.html" class="menu-link">
+                  <a href="{{ route('content.dashboard', ['folder' => 'seminarios', 'content' => 'seminariosRegister']) }}" class="menu-link">
                     <div data-i18n="Basic Inputs">Registrar seminario</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="forms-input-groups.html" class="menu-link">
-                    <div data-i18n="Input groups">Input groups</div>
+                  <a href="{{ route('registerCurso.show', ['folder' => 'seminarios', 'content' => 'seminariosTable', 'tipo' => 'seminario']) }}" class="menu-link">
+                    <div data-i18n="Input groups">Visualizar Seminarios</div>
                   </a>
                 </li>
               </ul>
@@ -271,13 +269,13 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="form-layouts-vertical.html" class="menu-link">
-                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  <a href="{{ route('content.dashboard', ['folder' => 'talleres', 'content' => 'talleresRegister']) }}" class="menu-link">
+                    <div data-i18n="Basic Inputs">Registrar Talleres</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="form-layouts-horizontal.html" class="menu-link">
-                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  <a href="{{ route('registerCurso.show', ['folder' => 'talleres', 'content' => 'talleresTable', 'tipo' => 'taller']) }}" class="menu-link">
+                    <div data-i18n="Input groups">Visualizar Talleres</div>
                   </a>
                 </li>
               </ul>
@@ -289,13 +287,13 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="form-layouts-vertical.html" class="menu-link">
-                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  <a href="{{ route('content.dashboard', ['folder' => 'capacitaciones', 'content' => 'capacitacionesRegister']) }}" class="menu-link">
+                    <div data-i18n="Basic Inputs">Registrar Capacitaciones</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="form-layouts-horizontal.html" class="menu-link">
-                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  <a href="{{ route('registerCurso.show', ['folder' => 'capacitaciones', 'content' => 'capacitacionesTable', 'tipo' => 'capacitacion']) }}" class="menu-link">
+                    <div data-i18n="Input groups">Visualizar Capacitaciones</div>
                   </a>
                 </li>
               </ul>
@@ -453,7 +451,7 @@
                 <div class="mb-2 mb-md-0">
                   ©
                   <script>
-                    document.write(new Date().getFullYear());
+                      document.write(new Date().getFullYear());
                   </script>
                   , made by
                   <a href="#" target="_blank" class="footer-link fw-bolder">Fundetic Bolivia</a>
@@ -497,7 +495,7 @@
     <!-- build:js assets/vendor/js/core.js -->
     @vite(['resources/libs/perfect-scrollbar/perfect-scrollbar.js', 'resources/js/menu.js'])
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 

@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 27, 2023 at 10:51 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-04-2023 a las 05:44:40
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `eduproject`
+-- Base de datos: `eduproject`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administradores`
+-- Estructura de tabla para la tabla `administradores`
 --
 
 CREATE TABLE `administradores` (
@@ -42,7 +42,7 @@ CREATE TABLE `administradores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `administradores`
+-- Volcado de datos para la tabla `administradores`
 --
 
 INSERT INTO `administradores` (`id`, `names`, `lastnames`, `state`, `phone_number`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -51,7 +51,39 @@ INSERT INTO `administradores` (`id`, `names`, `lastnames`, `state`, `phone_numbe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `docentes`
+-- Estructura de tabla para la tabla `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` longtext NOT NULL,
+  `tipo_curso` varchar(255) NOT NULL,
+  `max_personas` int(11) NOT NULL,
+  `costo` double(8,2) NOT NULL,
+  `duracion` int(11) NOT NULL,
+  `unidad_duracion` varchar(255) NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `titulo`, `descripcion`, `tipo_curso`, `max_personas`, `costo`, `duracion`, `unidad_duracion`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Semiario de Informatica', 'ahora tiene una mejor descripcion', 'seminario', 23, 23.00, 23, 'Meses', NULL, '2023-04-04 01:49:09', '2023-04-06 02:35:00'),
+(2, 'Seminario de Lideres', 'Charla acerca de X tema y demas sub temas', 'seminario', 20, 150.00, 2, 'Días', NULL, '2023-04-05 00:45:52', '2023-04-06 02:35:44'),
+(3, 'Taller de Informatica', 'Taller corto acerca de las bases fundamentales de la informatica y su generalizacion', 'taller', 12, 120.00, 5, 'Horas', NULL, '2023-04-06 00:19:40', '2023-04-06 00:19:40'),
+(4, 'pruebaasd', 'asdasdas', 'seminario', 123, 23.00, 213, 'Meses', '2023-04-06 00:33:17', '2023-04-06 00:33:12', '2023-04-06 00:33:17'),
+(5, 'taller 3', 'asdasd', 'taller', 23, 23.00, 12, 'Días', '2023-04-06 19:16:37', '2023-04-06 00:34:05', '2023-04-06 19:16:37'),
+(6, 'Capacitacion de prueba 2', 'asdasdas', 'capacitacion', 123, 12.00, 12, 'Días', NULL, '2023-04-06 00:43:07', '2023-04-06 19:19:40');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docentes`
 --
 
 CREATE TABLE `docentes` (
@@ -74,16 +106,18 @@ CREATE TABLE `docentes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `docentes`
+-- Volcado de datos para la tabla `docentes`
 --
 
 INSERT INTO `docentes` (`id`, `names`, `lastnames`, `state`, `phone_number`, `CV`, `degree_lv`, `birthdate`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`, `ci`) VALUES
-(1, 'Gregoriana', 'Mamalon', 1, '7854854', '', 'Maestria en Big Data', '2023-03-22', 'gregorio@gmail.com', NULL, '$2y$10$CnQTlKg/SvDF5K/0J/Fs/OMcLGY3cIDgpka8hEPlkX9QTkHGZxJ1K', NULL, '2023-03-22 19:47:24', '2023-03-24 00:46:18', NULL, 5299072);
+(1, 'Gregoriana', 'Mamalon', 1, '7854854', '', 'Maestria en Big Data', '2023-03-22', 'gregorio@gmail.com', NULL, '$2y$10$JSw3XweX473xH6Gydy2c3urLhCIbq6odFlh6.JpZM0rduRKmXC62S', NULL, '2023-03-22 19:47:24', '2023-04-12 00:28:42', NULL, 5299072),
+(9, 'John', 'Trabolta', 1, '1231231', '123213.pdf', 'Magister en Nada', '2023-01-01', 'jhon@gmail.com', NULL, '$2y$10$O5G0YNp.2DF5PqsUXMg2pusgRBw2pThdKtlEZnNtS0QvzzqQzb9nm', NULL, '2023-04-14 01:12:25', '2023-04-14 01:12:25', NULL, 123213),
+(10, 'Johnie', 'Traboltass', 1, '123', '213123.pdf', 'Magister en Nadaasd', '2023-01-01', 'alexanderru@hotmail.com', NULL, '$2y$10$Hyo.sMF4iWQtDrhTqlQhTurxR9kTrJefkit58lfWrDRBADQeuH4Zu', NULL, '2023-04-14 02:00:31', '2023-04-14 02:00:31', NULL, 213123);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estudiantes`
+-- Estructura de tabla para la tabla `estudiantes`
 --
 
 CREATE TABLE `estudiantes` (
@@ -104,7 +138,7 @@ CREATE TABLE `estudiantes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `estudiantes`
+-- Volcado de datos para la tabla `estudiantes`
 --
 
 INSERT INTO `estudiantes` (`id`, `names`, `lastnames`, `state`, `phone_number`, `birthdate`, `address`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
@@ -114,12 +148,13 @@ INSERT INTO `estudiantes` (`id`, `names`, `lastnames`, `state`, `phone_number`, 
 (9, 'Pruebita1', 'asdasd', 1, '12353454353', '2023-03-21', 'dasdsad', 'hola@gmail.com', NULL, '$2y$10$kJMb1vk7X.wNi0LNBv8WAOMNYKM6z1hcY4jah7.k2XjI0LH3DAJsu', NULL, '2023-03-22 04:34:50', '2023-03-22 19:04:16', '2023-03-22 19:04:16'),
 (10, 'Alexander Ruslan', 'Florido Siles', 1, '34324324', '2023-03-23', 'Calle B. Navarrete casi Av. Guadalquivir', 'alexanderruslan@hotmail.com', NULL, '$2y$10$9H8nZfCittCZ/PosyfBhv.DneVe4Y2DiMPdPNhNT74zxyuEWo6Yt.', NULL, '2023-03-24 01:55:32', '2023-03-24 01:55:32', NULL),
 (11, 'Alexander Ruslan', 'Florido Siles', 1, '234234234', '2023-03-23', 'Calle B. Navarrete casi Av. Guadalquivir', 'alexsanderruslan@hotmail.com', NULL, '$2y$10$L.PKSwAasHOfH9rYEZv8ge2LV6SByhKMiLiwahe8oQ09tnNZWGT/e', NULL, '2023-03-24 01:56:34', '2023-03-24 01:56:34', NULL),
-(12, 'Alexander Ruslan', 'Florido Siles', 1, '4345345435', '2023-03-23', 'Calle B. Navarrete casi Av. Guadalquivir', 'alexsanddsaderruslan@hotmail.com', NULL, '$2y$10$4fmTTmCTVTkJpumAvrkhH.Mb4lIBHHB0Z2ja/Apiy3T/acS.8iCpK', NULL, '2023-03-24 01:57:07', '2023-03-24 01:57:07', NULL);
+(12, 'Alexander Ruslan', 'Florido Siles', 1, '4345345435', '2023-03-23', 'Calle B. Navarrete casi Av. Guadalquivir', 'alexsanddsaderruslan@hotmail.com', NULL, '$2y$10$4fmTTmCTVTkJpumAvrkhH.Mb4lIBHHB0Z2ja/Apiy3T/acS.8iCpK', NULL, '2023-03-24 01:57:07', '2023-03-24 01:57:07', NULL),
+(13, 'John', 'Trabolta', 1, '1231231', '2023-04-10', 'Av. America', 'jhon@gmail.com', NULL, '$2y$10$.0xuBA2YdAbGXL3fwuszAOvF2gOyHWrHSKq6CnGmyRcV5.a6bsD4.', NULL, '2023-04-11 02:24:29', '2023-04-11 02:24:29', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Estructura de tabla para la tabla `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -135,7 +170,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Estructura de tabla para la tabla `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -145,7 +180,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Volcado de datos para la tabla `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -158,12 +193,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2023_03_14_220134_create_administradores', 3),
 (14, '2023_03_21_191402_add_soft_delete_to_estudiantes', 4),
 (15, '2023_03_22_152845_add_soft_delete_to_docentes', 5),
-(16, '2023_03_24_222222_create_table_cursos', 6);
+(16, '2023_03_24_222222_create_table_cursos', 6),
+(17, '2023_04_03_214528_create_cursos', 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Estructura de tabla para la tabla `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -175,7 +211,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Estructura de tabla para la tabla `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -194,27 +230,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `table_cursos`
---
-
-CREATE TABLE `table_cursos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `titulo` varchar(255) NOT NULL,
-  `descripcion` longtext NOT NULL,
-  `tipo_curso` varchar(255) NOT NULL,
-  `max_personas` int(11) NOT NULL,
-  `costo` double(8,2) NOT NULL,
-  `duracion` int(11) NOT NULL,
-  `unidad_duracion` int(11) NOT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -232,7 +248,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `names`, `lastnames`, `phone_number`, `birthdate`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -242,51 +258,57 @@ INSERT INTO `users` (`id`, `names`, `lastnames`, `phone_number`, `birthdate`, `e
 (5, 'asdasd', 'asdads', '54353453453', '2023-03-23', 'test@gmail.com', NULL, '$2y$10$xw7n.ctN2nGB9pTv.UQl0eNdLnea20bWb/gHmcfAXKtJ5TO6OHPs2', NULL, '2023-03-24 02:36:13', '2023-03-24 02:36:13');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `administradores`
+-- Indices de la tabla `administradores`
 --
 ALTER TABLE `administradores`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `administradores_email_unique` (`email`);
 
 --
--- Indexes for table `docentes`
+-- Indices de la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `docentes`
 --
 ALTER TABLE `docentes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `docentes_email_unique` (`email`);
 
 --
--- Indexes for table `estudiantes`
+-- Indices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `estudiantes_email_unique` (`email`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indices de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `migrations`
+-- Indices de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `personal_access_tokens`
+-- Indices de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -294,66 +316,60 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `table_cursos`
---
-ALTER TABLE `table_cursos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `administradores`
+-- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `docentes`
+-- AUTO_INCREMENT de la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `docentes`
 --
 ALTER TABLE `docentes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `estudiantes`
+-- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT de la tabla `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `personal_access_tokens`
+-- AUTO_INCREMENT de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `table_cursos`
---
-ALTER TABLE `table_cursos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

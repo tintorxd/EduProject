@@ -7,7 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdministradoresController;
-
+use App\Http\Controllers\CursosController;
+use App\Models\Docentes;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,9 @@ use App\Http\Controllers\AdministradoresController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('/prueba', [DocentesController::class, "test"])->name('test.init');
+Route::post('/prueba', [DocentesController::class, "test"])->name("test");
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,7 +54,14 @@ Route::get('/show-docente/{content}', [DocentesController::class, "show"])->name
 Route::post('/delete-docente/{id}', [DocentesController::class, "delete"])->name('registerDocente.delete');
 Route::post('/edit-docente/{id}', [DocentesController::class, "edit"])->name('registerDocente.edit');
 Route::post('/update-docente/{id}', [DocentesController::class, "update"])->name('registerDocente.update');
-// Admin Pages
+// Cursos Pages
+Route::post('/create-curso/{tipo}', [CursosController::class, "create"])->name('registerCurso.create');
+Route::get('/show-curso/{folder}/{content}/{tipo}', [CursosController::class, "show"])->name('registerCurso.show');
+Route::post('/delete-curso/{id}/{tipo}/{folder}', [CursosController::class, "delete"])->name('registerCurso.delete');
+Route::post('/edit-curso/{id}/{folder}', [CursosController::class, "edit"])->name('registerCurso.edit');
+Route::get('/enable-curso/{id}/{folder}', [CursosController::class, "enableCursoView"])->name('registerCurso.enable');
+Route::post('/update-curso/{id}/{tipo}/{folder}', [CursosController::class, "update"])->name('registerCurso.update');
+
 Route::get(
     '/adminweb',
     function () {

@@ -19,6 +19,10 @@ class EstudiantesController extends Controller
         //
     }
 
+    public function test()
+    {
+        echo "hola";
+    }
     /**
      * Show the form for creating a new resource.
      *

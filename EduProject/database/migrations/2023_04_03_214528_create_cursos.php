@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_cursos', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string("titulo");
             $table->longText("descripcion");
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer("max_personas");
             $table->float("costo");
             $table->integer("duracion");
-            $table->integer("unidad_duracion");
+            $table->string("unidad_duracion");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_cursos');
+        Schema::dropIfExists('cursos');
     }
 };
